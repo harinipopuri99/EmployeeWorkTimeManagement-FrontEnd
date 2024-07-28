@@ -14,7 +14,7 @@ function HrList(){
         .then(resp=>{
             setData(resp.data)
         })
-    })
+    },[])
     return (
       <div className="container">
         <div className="row">
