@@ -10,6 +10,8 @@ import ProjectList from "./features/employee/components/projectlist";
 import Employee from "./features/employee/employee";
 import CreateProject from "./features/manager/components/createproject";
 import EmployeeList from "./features/manager/components/employeeList";
+import CreateTask from "./features/manager/components/createtask";
+import Notification from "./features/manager/components/notification";
 
 function App() {
    return(
@@ -23,6 +25,8 @@ function App() {
           <Route path="/manager" element={<Manager />}></Route>
           <Route path="/list-employees" element={<EmployeeList />}></Route>
           <Route path="/create-project" element={<CreateProject />}></Route>
+          <Route path="/create-task" element={<CreateTask />}></Route>
+          <Route path="/send-notification" element={<Notification />}></Route>
           <Route path="/employee" element={<Employee />}></Route>
           <Route path="/project-list" element={<ProjectList />}></Route>
       </Routes>

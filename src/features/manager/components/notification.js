@@ -1,47 +1,54 @@
-import Navbar from '../../employee/components/navbar';
+import Navbar from '../../manager/components/navbar';
 import '../manager.css';
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function CreateProject() {
-    const [regions, setRegions] = useState([]);
+function Notification() {
+    const [employees, setEmployees] = useState([]);
     const [name, setName] = useState(null);
-    const [description, setDescription] = useState(null);
-    const [regionId, setRegionId] = useState(null);
+    const [message, setMessage] = useState(null);
+    const [employeeId, setEmployeeId] = useState(null);
     const [msg, setMsg] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:8081/api/cap/region/all`, {
-            headers: {
-                'Authorization': 'Basic ' + localStorage.getItem('token')
+        const fetchEmployees = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8081/api/cap/manager/employee`, {
+                    headers: {
+                        'Authorization': 'Basic ' + localStorage.getItem('token')
+                    }
+                });
+                setEmployees(response.data);
+            } catch (error) {
+                console.error("Error fetching employees:", error);
             }
-        }).then(resp => {
-            setRegions(resp.data);
-        });
-    }, []);
-
-    const addProject = () => {
-        console.log(name);
-        console.log(description);
-        console.log(regionId);
-
-        let data = {
-            "name": name,
-            "description": description,
         };
 
-        axios.post('http://localhost:8081/api/cap/project/add/' + regionId, data, {
+        fetchEmployees();
+    }, []); // The empty dependency array means this useEffect runs once when the component mounts.
+
+    const sendNotification = () => {
+        console.log(name);
+        console.log(message);
+        console.log(employeeId);
+        
+        let data = {
+            "name": name,
+            "message": message
+        };
+
+        axios.post('http://localhost:8081/api/cap/notification/' + employeeId, data, {
             headers: {
                 'Authorization': 'Basic ' + localStorage.getItem('token')
             }
         })
         .then(resp => {
             console.log(resp);
-            setMsg('Project Added Successfully..');
+            setMsg('Notification Added Successfully.');
         })
         .catch(err => {
             console.log(err);
-            setMsg('Adding Project Failed.. Please contact IT Admin');
+            setMsg('Adding Notification Failed. Please contact IT Admin');
         });
 
         window.scroll(0, 0);
@@ -55,7 +62,7 @@ function CreateProject() {
                     <div className="col-lg-12">
                         <div className="card">
                             <div className="card-header">
-                                <h4>Create Project</h4>
+                                <h4>Send Notification</h4>
                             </div>
                             <div className="card-body employee-form">
                                 {
@@ -66,35 +73,37 @@ function CreateProject() {
                                 }
 
                                 <div className="mb-3">
-                                    <h4>Add Project Details</h4>
+                                    <h4>Add Notification Details</h4>
                                 </div>
                                 <div className="mb-3">
-                                    <label className="form-label">Enter Name: </label>
-                                    <input type="text" className="form-control" placeholder="Enter name of the Project"
+                                    <label className="form-label">Enter Subject: </label>
+                                    <input type="text" className="form-control" placeholder="Enter subject"
                                         onChange={(e) => setName(e.target.value)} />
                                 </div>
                                 <div className="mb-3">
-                                    <label className="form-label">Enter Description: </label>
-                                    <input type="text" className="form-control" placeholder="Enter Description"
-                                        onChange={(e) => setDescription(e.target.value)} />
+                                    <label className="form-label">Enter Message: </label>
+                                    <input type="text" className="form-control" placeholder="Enter Message"
+                                        onChange={(e) => setMessage(e.target.value)} />
+                                </div>
+
+                                <div className="mb-3">
+                                    <h4>Select Employee</h4>
                                 </div>
                                 <div className="mb-3">
-                                    <h4>Assign Region</h4>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Select Region: </label>
+                                    <label className="form-label">Select Employee: </label>
                                     <select className="form-select" aria-label="Default select example"
-                                        onChange={(e) => setRegionId(e.target.value)}>
+                                        onChange={(e) => setEmployeeId(e.target.value)}>
                                         <option value=""> </option>
                                         {
-                                            regions.map((region, index) => (
-                                                <option value={region.id} key={index}>{region.regionName}</option>
+                                            employees.map((employee, index) => (
+                                                <option value={employee.id} key={index}>{employee.name}</option>
                                             ))
                                         }
                                     </select>
                                 </div>
+
                                 <div className="mb-3">
-                                    <button className="btn btn-primary" onClick={() => addProject()}>Add Project</button>
+                                    <button className="btn btn-primary" onClick={() => sendNotification()}>Send Notification</button>
                                 </div>
                             </div>
                         </div>
@@ -105,4 +114,4 @@ function CreateProject() {
     );
 }
 
-export default CreateProject;
+export default Notification;

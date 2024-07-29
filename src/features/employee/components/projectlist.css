@@ -2,3 +2,35 @@
     font-weight: bold;
     color: #007bff; /* Bootstrap primary color */
 }
+
+.container {
+    margin-top: 20px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    padding: 20px;
+    background-color: #ffffff;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.empName {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.btn-danger {
+    border-radius: 5px;
+}

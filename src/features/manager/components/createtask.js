@@ -2,46 +2,54 @@ import Navbar from '../../employee/components/navbar';
 import '../manager.css';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Calendar } from 'primereact/calendar';
 
-function CreateProject() {
-    const [regions, setRegions] = useState([]);
+function CreateTask() {
+    const [projects, setProjects] = useState([]);
     const [name, setName] = useState(null);
-    const [description, setDescription] = useState(null);
-    const [regionId, setRegionId] = useState(null);
+    const [taskDetails, setTaskDetails] = useState(null);
+    const [projectId, setProjectId] = useState(null);
+    const [dates, setDates] = useState(null);
     const [msg, setMsg] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:8081/api/cap/region/all`, {
+        axios.get(`http://localhost:8081/api/cap/project/all`, {
             headers: {
                 'Authorization': 'Basic ' + localStorage.getItem('token')
             }
         }).then(resp => {
-            setRegions(resp.data);
+            setProjects(resp.data);
         });
     }, []);
 
-    const addProject = () => {
+    const addTask = () => {
         console.log(name);
-        console.log(description);
-        console.log(regionId);
+        console.log(taskDetails);
+        console.log(projectId)
+        console.log(dates);
 
+        let startDate = new Date(dates[0]).toISOString().split("T")[0];
+        let endDate = new Date(dates[1]).toISOString().split("T")[0];
+        
         let data = {
-            "name": name,
-            "description": description,
+            "name" : name,
+            "taskDetails" : taskDetails,
+            "startDate" : startDate,
+            "endDate" : endDate
         };
 
-        axios.post('http://localhost:8081/api/cap/project/add/' + regionId, data, {
+        axios.post('http://localhost:8081/api/cap/task/project/' + projectId, data, {
             headers: {
                 'Authorization': 'Basic ' + localStorage.getItem('token')
             }
         })
         .then(resp => {
             console.log(resp);
-            setMsg('Project Added Successfully..');
+            setMsg('Task Added Successfully..');
         })
         .catch(err => {
             console.log(err);
-            setMsg('Adding Project Failed.. Please contact IT Admin');
+            setMsg('Adding Task Failed.. Please contact IT Admin');
         });
 
         window.scroll(0, 0);
@@ -55,7 +63,7 @@ function CreateProject() {
                     <div className="col-lg-12">
                         <div className="card">
                             <div className="card-header">
-                                <h4>Create Project</h4>
+                                <h4>Create Task</h4>
                             </div>
                             <div className="card-body employee-form">
                                 {
@@ -66,35 +74,48 @@ function CreateProject() {
                                 }
 
                                 <div className="mb-3">
-                                    <h4>Add Project Details</h4>
+                                    <h4>Add Task Details</h4>
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label">Enter Name: </label>
-                                    <input type="text" className="form-control" placeholder="Enter name of the Project"
+                                    <input type="text" className="form-control" placeholder="Enter name of the Task"
                                         onChange={(e) => setName(e.target.value)} />
                                 </div>
                                 <div className="mb-3">
                                     <label className="form-label">Enter Description: </label>
                                     <input type="text" className="form-control" placeholder="Enter Description"
-                                        onChange={(e) => setDescription(e.target.value)} />
+                                        onChange={(e) => setTaskDetails(e.target.value)} />
+                                </div>
+
+                                <div className="mb-3">
+                                    <h4>Link to Project</h4>
                                 </div>
                                 <div className="mb-3">
-                                    <h4>Assign Region</h4>
-                                </div>
-                                <div className="mb-3">
-                                    <label className="form-label">Select Region: </label>
+                                    <label className="form-label">Select Project: </label>
                                     <select className="form-select" aria-label="Default select example"
-                                        onChange={(e) => setRegionId(e.target.value)}>
+                                        onChange={(e) => setProjectId(e.target.value)}>
                                         <option value=""> </option>
                                         {
-                                            regions.map((region, index) => (
-                                                <option value={region.id} key={index}>{region.regionName}</option>
+                                            projects.map((project, index) => (
+                                                <option value={project.id} key={index}>{project.name}</option>
                                             ))
                                         }
                                     </select>
                                 </div>
+
+                                <label>Enter Start and end date for the task: </label>
+                                <br />
+                                <div className="card flex justify-content-center">
+                                <Calendar
+                                    value={dates}
+                                    onChange={(e) => setDates(e.value)}
+                                    selectionMode="range"
+                                    readOnlyInput
+                                    hideOnRangeSelection
+                                />
+                                </div>
                                 <div className="mb-3">
-                                    <button className="btn btn-primary" onClick={() => addProject()}>Add Project</button>
+                                    <button className="btn btn-primary" onClick={() => addTask()}>Add Task</button>
                                 </div>
                             </div>
                         </div>
@@ -105,4 +126,4 @@ function CreateProject() {
     );
 }
 
-export default CreateProject;
+export default CreateTask;

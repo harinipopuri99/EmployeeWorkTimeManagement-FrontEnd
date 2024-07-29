@@ -26,7 +26,13 @@ function Navbar(){
         <li className="nav-item">
           <Link className="nav-link active" to="/create-project">Create Project</Link>
         </li>
-         
+        <li className="nav-item">
+          <Link className="nav-link active" to="/create-task">Create Task</Link>
+        </li>
+
+        <li className="nav-item">
+          <Link className="nav-link active" to="/send-notification">Send Notification</Link>
+        </li>
       </ul>
 
       <span>Welcome {localStorage.getItem('username')} &nbsp;&nbsp;&nbsp;</span>
