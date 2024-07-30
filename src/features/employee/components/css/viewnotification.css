@@ -1,0 +1,57 @@
+/* css/viewnotification.css */
+.notification-item {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notification-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+.close-btn {
+    margin-left: auto;
+}
+
+.notification-content p {
+    margin: 0.5rem 0 0;
+    color: #495057;
+}
+
+.custom-carousel .p-carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-carousel .p-carousel-item .notification-item {
+    width: 100%;
+}
+
+.card {
+    margin-bottom: 2rem;
+}
+
+.p-datatable-sm .p-datatable-thead > tr > th,
+.p-datatable-sm .p-datatable-tbody > tr > td {
+    padding: 0.5rem;
+}
+
+.mb-4{
+    font-size: 1.2rem;
+    color: #4b5563;
+    text-align: center;
+}

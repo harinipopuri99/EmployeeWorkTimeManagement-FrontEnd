@@ -7,6 +7,7 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import './projectlist.css';
+import Navbar from "./navbar";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -32,19 +33,17 @@ function ProjectList() {
         });
     }, []);
 
-    const handleLogout = ()=>{
-        localStorage.clear();
-        navigate('/?msg=looged_out')
-      }
-
     return (
+
+        <div>
+      <Navbar />
         <div className="container mt-5">
             <div className="row justify-content-center">
                 <div className="col-lg-10">
                     <div className="card shadow">
                         <div className="card-header d-flex justify-content-between align-items-center">
                             <h5 className="mb-0">Projects Assigned to <span className="empName">{empName}</span></h5>
-                            <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+                           
                         </div>
                         <div className="card-body">
                             {projects.length > 0 ? (
@@ -59,6 +58,7 @@ function ProjectList() {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     );
 }

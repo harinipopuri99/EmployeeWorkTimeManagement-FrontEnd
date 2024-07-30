@@ -1,0 +1,68 @@
+/* css/projecttasks.css */
+.container {
+    margin-top: 2rem;
+}
+
+.card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #5f6875;
+    color: rgb(76, 74, 74);
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.accordion-tab {
+    margin-bottom: 1rem;
+}
+
+.accordion-tab-header {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.accordion-tab-content {
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border: 1px solid #dee2e6;
+    border-top: none;
+}
+
+.project-details, .task-details {
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 1rem;
+}
+
+.task-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.task-card p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #495057;
+}
+
+.task-card p strong {
+    color: #007bff;
+}

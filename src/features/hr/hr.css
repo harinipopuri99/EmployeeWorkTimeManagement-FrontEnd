@@ -24,3 +24,24 @@
     font-size: 1.2em;
 
 }
+
+
+/* hr.css */
+.p-grid {
+    margin-top: 20px;
+}
+
+.count {
+    font-size: 2em;
+    font-weight: bold;
+    color: #495057;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Adjust as needed for spacing */
+}
+
+

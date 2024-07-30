@@ -6,12 +6,14 @@ import ManagerOnBoarding from "./features/hr/components/manageronboarding";
 import Manager from "./features/manager/manager";
 import { Provider } from "react-redux";
 import store from "./store";
-import ProjectList from "./features/employee/components/projectlist";
 import Employee from "./features/employee/employee";
 import CreateProject from "./features/manager/components/createproject";
 import EmployeeList from "./features/manager/components/employeeList";
 import CreateTask from "./features/manager/components/createtask";
 import Notification from "./features/manager/components/notification";
+import ViewNotification from "./features/employee/components/viewnotification";
+import ProjectTasks from "./features/employee/components/projecttasks";
+import TaskList from "./features/employee/components/tasklist";
 
 function App() {
    return(
@@ -28,7 +30,11 @@ function App() {
           <Route path="/create-task" element={<CreateTask />}></Route>
           <Route path="/send-notification" element={<Notification />}></Route>
           <Route path="/employee" element={<Employee />}></Route>
-          <Route path="/project-list" element={<ProjectList />}></Route>
+          <Route path="/tasks-list" element={<TaskList />}></Route>
+          <Route path="/notification" element={<ViewNotification />}></Route>
+          <Route path="/projects-tasks" element={<ProjectTasks />}></Route>
+          
+          
       </Routes>
       </Provider>
     </div>

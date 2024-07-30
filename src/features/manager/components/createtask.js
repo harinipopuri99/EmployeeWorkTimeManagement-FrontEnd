@@ -1,4 +1,4 @@
-import Navbar from '../../employee/components/navbar';
+import Navbar from '../../manager/components/navbar';
 import '../manager.css';
 import { useEffect, useState } from "react";
 import axios from "axios";

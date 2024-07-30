@@ -44,7 +44,7 @@ function Notification() {
         })
         .then(resp => {
             console.log(resp);
-            setMsg('Notification Added Successfully.');
+            setMsg('Notification sent successfully.');
         })
         .catch(err => {
             console.log(err);

@@ -12,6 +12,7 @@ import { getEmployees } from '../../../store/action/employee';
 import { Spinner } from 'react-bootstrap';
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router";
+import Navbar from "./navbar";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -91,7 +92,7 @@ function EmployeeList() {
   const assignTask = () => {
     let empId = employee.id;
 
-    axios.post('http://localhost:8081/api/cap/task/employee/' + empId + '/' + taskId, {}, {
+    axios.post('http://localhost:8081/api/cap/task/employee/' + empId + '/' + taskId + '/' + priorityValue, {}, {
       headers: {
         'Authorization': 'Basic ' + localStorage.getItem('token')
       }
@@ -115,6 +116,7 @@ function EmployeeList() {
 
   const renderHeader = () => {
     return (
+      
       <div className="flex justify-content-end">
         <IconField iconPosition="left">
           <InputIcon className="pi pi-search" />
@@ -200,17 +202,13 @@ function EmployeeList() {
     return <Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>;
   }
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate('/?msg=logged_out')
-  }
+ 
 
   return (
-    <div className="card">
-      <div className="card-header d-flex justify-content-between align-items-center">
-        <h5 className="mb-0">Employee List</h5>
-        <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
-      </div>
+    <div>
+            <Navbar />
+    
+     
 
       <DataTable
         value={data}
@@ -306,6 +304,7 @@ function EmployeeList() {
           </div>
         ))}
       </Dialog>
+    
     </div>
   );
 }

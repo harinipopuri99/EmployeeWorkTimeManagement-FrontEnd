@@ -1,48 +1,53 @@
+import { useNavigate } from "react-router-dom";
+import { Menubar } from 'primereact/menubar';
+import { Button } from 'primereact/button';
+import 'primereact/resources/themes/saga-blue/theme.css'; // theme
+import 'primereact/resources/primereact.min.css'; // core css
+import 'primeicons/primeicons.css'; // icons
+import './css/navbar.css'; // Importing navbar CSS
 
-import { Link, useNavigate } from "react-router-dom";
+function Navbar() {
+    const navigate = useNavigate();
 
-function Navbar(){
+    const logout = () => {
+        localStorage.clear();
+        navigate('/?msg=logged_out');
+    };
 
-  const navigate = useNavigate();
+    const items = [
+        {
+            label: 'List Employees',
+            icon: 'pi pi-fw pi-users',
+            command: () => { navigate('/list-employees'); }
+        },
+        {
+            label: 'Create Project',
+            icon: 'pi pi-fw pi-briefcase',
+            command: () => { navigate('/create-project'); }
+        },
+        {
+            label: 'Create Task',
+            icon: 'pi pi-fw pi-check-square',
+            command: () => { navigate('/create-task'); }
+        },
+        {
+            label: 'Send Notification',
+            icon: 'pi pi-fw pi-bell',
+            command: () => { navigate('/send-notification'); }
+        },
+    ];
 
+    const start = <span className="p-menubar-logo" onClick={() => navigate('/manager')}>Manager Dashboard</span>;
+    const end = (
+        <>
+           
+            <Button label="Logout" icon="pi pi-power-off" className="p-button-secondary" onClick={logout} />
+        </>
+    );
 
-  const logout = ()=>{
-    localStorage.clear();
-    navigate('/?msg=looged_out')
-  }
-
-    return(
-        <nav className="navbar navbar-expand-lg" data-bs-theme="light"  style={{ backgroundColor: '#e3f2fd', color: 'gray'}}>
-  <div className="container-fluid">
-    <Link className="navbar-brand" to="/manager">Manager Dashboard</Link>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <Link className="nav-link active"  to="/list-employees">List Employees</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link active" to="/create-project">Create Project</Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link active" to="/create-task">Create Task</Link>
-        </li>
-
-        <li className="nav-item">
-          <Link className="nav-link active" to="/send-notification">Send Notification</Link>
-        </li>
-      </ul>
-
-      <span>Welcome {localStorage.getItem('username')} &nbsp;&nbsp;&nbsp;</span>
-
-      &nbsp;&nbsp;
-      <button className="btn btn-secondary"  onClick={logout}>LogOut</button>
-
-    </div>
-  </div>
-</nav>
-    )
+    return (
+        <Menubar model={items} start={start} end={end} className="custom-menubar" />
+    );
 }
+
 export default Navbar;

@@ -1,0 +1,66 @@
+/* css/navbar.css */
+.p-menubar {
+    background-color: #e3f2fd !important;
+    color: gray !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 0px;
+}
+
+.p-menubar .p-menubar-button {
+    color: gray !important;
+}
+
+.p-menubar .p-menuitem-link {
+    color: gray !important;
+    text-decoration: none !important; /* Remove underlines */
+}
+
+.p-menubar .p-menuitem-link:hover {
+    text-decoration: none !important; /* Ensure no underlines on hover */
+}
+
+.p-button-secondary {
+    background-color: #ce1818 !important;
+    border: none !important;
+}
+
+.p-menubar-logo {
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    color: #0f6979 !important;
+    text-decoration: none !important; /* Remove underlines */
+}
+
+.p-menubar .pi-home {
+    color: #007bff !important; /* Blue */
+}
+
+.p-menubar .pi-list {
+    color: #28a745 !important; /* Green */
+}
+
+.p-menubar .pi-briefcase {
+    color: #ffc107 !important; /* Yellow */
+}
+
+.p-menubar .pi-bell {
+    color: #dc3545 !important; /* Red */
+}
+
+.p-button-secondary .pi-power-off {
+    color: white !important;
+}
+
+.custom-menubar .p-menubar-start,
+.custom-menubar .p-menubar-end {
+    display: flex;
+    align-items: center;
+}
+
+ul {
+    margin-bottom: 0px !important;
+}
