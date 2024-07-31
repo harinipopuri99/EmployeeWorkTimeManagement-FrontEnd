@@ -296,6 +296,9 @@ function EmployeeList() {
                 <div className="card-body">
                   <p style={{ fontSize: '1.3em', fontFamily: "monospace" }}>{t.taskDetails}</p>
                 </div>
+                <div className="card-body">
+                  <p style={{ fontSize: '1.3em', fontFamily: "monospace" }}> Status: {t.status}</p>
+                </div>
                 <div className="card-footer">
                   <button className="btn btn-danger" onClick={() => archiveTask(t.id)}>Archive</button>
                 </div>
